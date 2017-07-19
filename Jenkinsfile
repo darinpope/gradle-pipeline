@@ -9,6 +9,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                input 'do you want to deploy?'
                 sh 'echo deploy'
                 sh 'zip gs-spring-boot.zip Procfile build/libs/gs-spring-boot-0.1.0.jar'
                 sh 'aws s3 cp gs-spring-boot.zip s3://cb-dpope-apps/${BUILD_NUMBER}/gs-spring-boot.zip --profile cloudbees-ps'
